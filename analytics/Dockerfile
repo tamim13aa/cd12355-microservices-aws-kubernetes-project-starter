@@ -1,16 +1,10 @@
 FROM python:3.9-slim
 
-# Set working directory
 WORKDIR /app
 
-# Copy only requirements
-COPY analytics/requirements.txt .
-
-# Install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire analytics code
-COPY analytics/ .
+COPY . .
 
-# Run the app
 CMD ["python", "app.py"]
