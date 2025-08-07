@@ -10,6 +10,5 @@ COPY analytics/ /app/
 # Install required Python packages
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5153
+# Command to run the app
 CMD ["python", "app.py"]
-
