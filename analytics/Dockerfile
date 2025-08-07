@@ -9,9 +9,8 @@ COPY analytics/requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire analytics app code
+# Copy the entire analytics code
 COPY analytics/ .
 
 # Run the app
-CMD ["python", "analytics/app.py"]
-
+CMD ["python", "app.py"]
