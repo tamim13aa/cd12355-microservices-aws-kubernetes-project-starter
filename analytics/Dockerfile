@@ -13,4 +13,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY analytics/ .
 
 # Run the app
-CMD ["python", "app.py"]
+CMD ["python", "analytics/app.py"]
+
