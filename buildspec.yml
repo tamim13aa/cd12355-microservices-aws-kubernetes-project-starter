@@ -1,12 +1,22 @@
 version: 0.2
 
 phases:
-  install:
+  pre_build:
     commands:
-      - echo "📦 Install phase running"
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 581606402611.dkr.ecr.us-east-1.amazonaws.com)
+      - REPOSITORY_URI=581606402611.dkr.ecr.us-east-1.amazonaws.com/coworking
+      - IMAGE_TAG=latest
   build:
     commands:
-      - echo "✅ buildspec.yml was found and is running!"
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+  post_build:
+    commands:
+      - echo Pushing the Docker image to ECR...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+
 artifacts:
   files:
     - '**/*'
